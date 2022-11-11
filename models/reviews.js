@@ -14,12 +14,61 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Reviews.init({
-    title: DataTypes.STRING,
-    text: DataTypes.STRING,
-    rating: DataTypes.NUMBER
+    title: {
+      type:DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate:{
+        isAlpha: {
+          args: true, 
+          msg: ' title solo debe tener letras'
+        },
+        notEmpty: {
+          args: true, 
+          msg: ' title no debe estar vacio'
+        },
+        notNull: true,
+      }
+    }, 
+    text: {
+      type:DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate:{
+        isAlpha: {
+          args: true, 
+          msg: ' text solo debe tener letras'
+        },
+        notEmpty: {
+          args: true, 
+          msg: ' text no debe estar vacio'
+        },
+        notNull: true,
+      }
+    },
+    rating: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isNumeric: {
+          args: true,
+          msg: 'rating solo debe tener numeros'
+        },
+        notEmpty: {
+          args: true,
+          msg: 'rating no debe estar vacio'
+        },
+        notNull: {
+          args: true,
+          msg: 'rating no debe ser nulo'
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Reviews',
+    timestamps: false
   });
   return Reviews;
 };

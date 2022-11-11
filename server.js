@@ -7,6 +7,8 @@ const connectDB = require('./config/db')
 //dependencias de las ritas 
 const bootcampRoutes = require('./routes/BootcampRoutes')
 const userRoutes = require('./routes/UserRoutes')
+const coursesRoutes = require('./routes/CoursesRoutes')
+const reviewsRoutes = require('./routes/ReviewsRoutes')
 //establecer el archivo de configuracion de proyecto 
 dotenv.config({
     path: './config_env/config.env'
@@ -18,6 +20,8 @@ app.use(express.json())
 connectDB()
 app.use('/api/v1/bootcamps', bootcampRoutes)
 app.use('/api/v1/users', userRoutes)
+app.use('/api/v1/courses', coursesRoutes)
+app.use('/api/v1/reviews', reviewsRoutes)
 console.log(listEndpopints(app))
 //ejecutar servidor de desarrollo de express
 app.listen(process.env.PORT , ()=>{

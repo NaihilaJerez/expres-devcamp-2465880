@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "daed02c2-3b64-4e0b-8d76-38fa32799822",
+		"_postman_id": "803bc1b1-9fff-4238-9ba0-ea1c07acc67d",
 		"name": "express-devcamp-2465880",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,18 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:5000/api/v1/reviews/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								""
+							]
 						}
 					},
 					"response": []
@@ -26,28 +37,6 @@
 						"header": [],
 						"url": {
 							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "crear bootcamps",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:5000/api/v1/bootcamps/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"api",
-								"v1",
-								"bootcamps",
-								""
-							]
 						}
 					},
 					"response": []
@@ -80,7 +69,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/api/v1/bootcamps/40",
+							"raw": "http://localhost:5000/api/v1/bootcamps/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -90,7 +79,38 @@
 								"api",
 								"v1",
 								"bootcamps",
-								"40"
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear botcamps",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/bootcamps/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"bootcamps",
+								""
 							]
 						}
 					},
@@ -222,6 +242,111 @@
 									"key": "C",
 									"value": null
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reviews",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "por id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"nooo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/reviews/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"ya no quiero mas\",\r\n        \"text\": \"esta bien\",\r\n        \"rating\": 591\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/reviews/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/reviews/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"1"
 							]
 						}
 					},

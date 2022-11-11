@@ -1,15 +1,15 @@
 const sequelize = require('../config/seq')
 const {DataTypes, ValidationError} = require('sequelize')
-const UserModel =require('../models/user')
-const user = require('../models/user')
-const User = UserModel (sequelize, DataTypes)
+const CoursesModel =require('../models/courses')
+const courses = require('../models/courses')
+const Courses = CoursesModel (sequelize, DataTypes)
 //get:obtener datos
-exports.traerUsers=async(req, res)=>{
+exports.traerCourses=async(req, res)=>{
     try {
-        const users = await User.findAll();
+        const courses = await Courses.findAll();
     res.status(200).json({
         "success": true, 
-        "data": users
+        "data": courses
     })
     } catch (error) {
         res
@@ -22,11 +22,11 @@ exports.traerUsers=async(req, res)=>{
     
 }
 //obtener recursos por id 
-exports.traerUsersPorId= async (req, res)=>{
+exports.traerCoursesPorId= async (req, res)=>{
     try {
-        const userId = await User.findByPk(req.params.id)
+        const courseId = await Courses.findByPk(req.params.id)
         //si ujsuario no existe 
-        if(!userId){
+        if(!courseId){
             res.status(422).json({
                 "success": false, 
                 "errors": [
@@ -37,7 +37,7 @@ exports.traerUsersPorId= async (req, res)=>{
     else{
     res.status(200).json({
         "success": true, 
-        "data": userId
+        "data": courseId
     })
 }
     } catch (error) {
@@ -51,12 +51,12 @@ exports.traerUsersPorId= async (req, res)=>{
     
 }
 //POST: crear un nuevo recurso
-exports.crearUser = async (req, res)=>{
+exports.crearCourses = async (req, res)=>{
     try {
-        const newUser = await User.create(req.body);
+        const newCourses = await Courses.create(req.body);
         res.status(201).json({
             "success": true, 
-            "data": newUser
+            "data": newCourses
     })
     } catch (error) {
         if(error instanceof ValidationError){
@@ -82,11 +82,11 @@ exports.crearUser = async (req, res)=>{
     
 }
 //put-path 
-exports.actualizarUser = async (req, res)=>{
+exports.actualizarCourses = async (req, res)=>{
     try {
         //consultar datos actializados 
-        const upUser = await User.findByPk(req.params.id)
-        if (!upUser) {
+        const upCourse = await Courses.findByPk(req.params.id)
+        if (!upCourse) {
             res.status(422).json({
                 "success": false, 
                 "errors": [
@@ -96,16 +96,16 @@ exports.actualizarUser = async (req, res)=>{
         }
         else{
             //actializar usuario 
-            await User.update(req.body, {
+            await Courses.update(req.body, {
                 where: {
                   id:req.params.id 
                 }
               });
               //seleccionar usuario actualizado
-              const userAct = await User.findByPk(req.params.id)
+              const courseAct = await Courses.findByPk(req.params.id)
               res.status(201).json({
                 "success": true, 
-                "data": userAct
+                "data": courseAct
             })
         }
     } catch (error) {
@@ -118,18 +118,18 @@ exports.actualizarUser = async (req, res)=>{
     }   
 }
 //DELETE: borara usuario 
-exports.borrarUser = async (req, res)=>{
+exports.borrarCourses = async (req, res)=>{
     try {
-        const u= await User.findByPk(req.params.id)
+        const u= await Courses.findByPk(req.params.id)
         if (!u) {
             res.status(422).json({
                 "success": false, 
                 "errors": [
-                    "se va a eliminar el bootcamp"
+                    "se va a eliminar el Courses"
                 ]
         })
         } else {
-            await User.destroy({
+            await Courses.destroy({
                 where:{
                     id: req.params.id
                 }

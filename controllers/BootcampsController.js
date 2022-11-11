@@ -1,15 +1,15 @@
 const sequelize = require('../config/seq')
 const {DataTypes, ValidationError} = require('sequelize')
-const UserModel =require('../models/user')
-const user = require('../models/user')
-const User = UserModel (sequelize, DataTypes)
+const BootcampModel =require('../models/bootcamp')
+const bootcamp = require('../models/bootcamp')
+const Bootcamp = BootcampModel (sequelize, DataTypes)
 //get:obtener datos
-exports.traerUsers=async(req, res)=>{
+exports.traerBootcamps=async(req, res)=>{
     try {
-        const users = await User.findAll();
+        const bootcamps = await Bootcamp.findAll();
     res.status(200).json({
         "success": true, 
-        "data": users
+        "data": bootcamps
     })
     } catch (error) {
         res
@@ -22,11 +22,11 @@ exports.traerUsers=async(req, res)=>{
     
 }
 //obtener recursos por id 
-exports.traerUsersPorId= async (req, res)=>{
+exports.traerBootcampsPorId= async (req, res)=>{
     try {
-        const userId = await User.findByPk(req.params.id)
+        const botcampId = await Bootcamp.findByPk(req.params.id)
         //si ujsuario no existe 
-        if(!userId){
+        if(!botcampId){
             res.status(422).json({
                 "success": false, 
                 "errors": [
@@ -37,7 +37,7 @@ exports.traerUsersPorId= async (req, res)=>{
     else{
     res.status(200).json({
         "success": true, 
-        "data": userId
+        "data": botcampId
     })
 }
     } catch (error) {
@@ -51,12 +51,12 @@ exports.traerUsersPorId= async (req, res)=>{
     
 }
 //POST: crear un nuevo recurso
-exports.crearUser = async (req, res)=>{
+exports.crearBootcamp = async (req, res)=>{
     try {
-        const newUser = await User.create(req.body);
+        const newBootcamp = await Bootcamp.create(req.body);
         res.status(201).json({
             "success": true, 
-            "data": newUser
+            "data": newBootcamp
     })
     } catch (error) {
         if(error instanceof ValidationError){
@@ -82,10 +82,10 @@ exports.crearUser = async (req, res)=>{
     
 }
 //put-path 
-exports.actualizarUser = async (req, res)=>{
+exports.actualizarBootcamp = async (req, res)=>{
     try {
         //consultar datos actializados 
-        const upUser = await User.findByPk(req.params.id)
+        const upUser = await Bootcamp.findByPk(req.params.id)
         if (!upUser) {
             res.status(422).json({
                 "success": false, 
@@ -102,7 +102,7 @@ exports.actualizarUser = async (req, res)=>{
                 }
               });
               //seleccionar usuario actualizado
-              const userAct = await User.findByPk(req.params.id)
+              const userAct = await Bootcamp.findByPk(req.params.id)
               res.status(201).json({
                 "success": true, 
                 "data": userAct
@@ -118,9 +118,9 @@ exports.actualizarUser = async (req, res)=>{
     }   
 }
 //DELETE: borara usuario 
-exports.borrarUser = async (req, res)=>{
+exports.borrarBootcamp = async (req, res)=>{
     try {
-        const u= await User.findByPk(req.params.id)
+        const u= await Bootcamp.findByPk(req.params.id)
         if (!u) {
             res.status(422).json({
                 "success": false, 

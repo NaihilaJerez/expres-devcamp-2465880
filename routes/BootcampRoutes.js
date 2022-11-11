@@ -1,35 +1,16 @@
 const express = require('express')
 const router = express.Router()
+const {crearBootcamp, traerBootcamps, traerBootcampsPorId, borrarBootcamp, actualizarBootcamp} = require('../controllers/BootcampsController')
 //establecer las rutas de bootcamp
 //crear rutas (endpoint url)para los bootcamps
 //get:obtener datos
-router.get('/', (req, res)=>{
-    res.status(200).json({
-        "message": "vamos a mostrar todos los bootcamps"
-    })
-})
-//obtener recursos por id 
-router.get('/:id' , (req, res)=>{
-    res.status(200).json({
-        "message": `vamos a mostrar en bootcamp cuyo id es ${req.params.id}`
-    })
-})
-//POST: crear un nuevo recurso
-router.post('/',  (req, res)=>{
-    res.status(201).json({
-        "message": "aqui se vaa crear un bootcamp"
-    })
-})
-//put-path 
-router.put('/:id' , (req, res)=>{
-    res.status(200).json({
-        "message": `aqui se va a actualixar el bootcamp ${req.params.id}`
-    })
-})
-//DELETE: borara bootcamp 
-router.delete('/:id' , (req, res)=>{
-    res.status(200).json({
-        "message": `aqui se va a borrar el bootcamp ${req.params.id}`
-    })
-})
+
+//RUTAS DE BOTCAMPS 
+router.route('/')
+        .get(traerBootcamps)
+        .post(crearBootcamp)
+router.route('/:id')
+        .get(traerBootcampsPorId)
+        .put(actualizarBootcamp)
+        .delete(borrarBootcamp)
 module.exports = router
